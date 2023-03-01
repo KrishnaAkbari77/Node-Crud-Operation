@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>PR-4</title>
+</head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+<body class="container">
+    <h2>Edit Record</h2>
+    <br>
+    <form action="/updateData" method="post" enctype="multipart/form-data">
+        <table class="table table-light">
+            <input type="hidden" name="id" value="<%= editR.id %>" />
+            <tr>
+                <td>Name :- </td>
+                <td><input type="text" name="name" value="<%= editR.name %>"></td>
+            </tr>
+            <tr>
+                <td>Email :- </td>
+                <td><input type="text" name="email" value="<%= editR.email %>"></td>
+            </tr>
+            <tr>
+                <td>Password :- </td>
+                <td><input type="text" name="password" value="<%= editR.password %>"></td>
+            </tr>
+            <tr>
+                <td>Gender :- </td>
+                <td>
+                    <input type="radio" <% if(editR.gender=="male" ) { %> checked <% } %> value="male"
+                        name="gender">Male
+                        <input type="radio" <% if(editR.gender=="female" ) { %> checked <% } %> value="female"
+                            name="gender">Female
+                </td>
+            </tr>
+            <tr>
+                <td>Hobby :- </td>
+                <td>
+                    <input type="checkbox" <% if(editR.hobby.includes('badminton')) { %> checked <% } %>
+                        value="badminton" name="hobby">badminton
+                        <input type="checkbox" <% if(editR.hobby.includes('music')) { %> checked <% } %> value="music"
+                            name="hobby">Music
+                            <input type="checkbox" <% if(editR.hobby.includes('reading')) { %> checked <% } %>
+                                value="reading" name="hobby">Reading
+                </td>
+            </tr>
+
+            <tr>
+                <td>city :- </td>
+                <td>
+                    <select name="city">
+                        <option value=""> ----select city----</option>
+
+                        <% let city=["surat" , "ahemdabad" , "vadodara" , "rajkot" ]; for(let i in city ) { %>
+                            <option <% if(city[i]==editR.city) { %> selected <% } %>
+                                    value="<%= city[i]%>">
+                                        <%= city[i] %>
+                            </option>
+                            <% } %>
+
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>File :- </td>
+                <td><input type="file" name="avatar"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><img src=<%="/" + editR.avatar %> alt="profile" width="100" /></td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td><input type="submit" style="background-color: rgb(255, 255, 0);"></td>
+            </tr>
+
+
+        </table>
+        <br>
+        <h4><a href="/view">View Record </a></h4>
+    </form>
+
+
+    <style>
+        td {
+            padding: 5px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        input[type="text"] {
+            padding: 5px;
+            width: 500px;
+        }
+    </style>
+</body>
+
+</html>
